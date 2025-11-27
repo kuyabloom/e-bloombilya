@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>E-Bloombilya — Virtual Lightstick</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<main class="container">
+			<h1 class="title">E‑Bloombilya — Virtual Lightstick</h1>
+
+			<section class="light-area">
+				<div id="lightstick" class="lightstick" aria-hidden="false">
+					<div class="handle"></div>
+					<div class="neck"></div>
+					<div class="head">
+						<div class="glow" id="glow"></div>
+						<div class="face"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="controls">
+				<div class="row">
+					<button id="btn-on" class="btn white">On</button>
+					<button id="btn-off" class="btn white">Off</button>
+				</div>
+
+				<div class="modes" role="tablist" aria-label="Light modes">
+					<label class="mode-label">Mode:</label>
+					<button class="btn mode active" data-mode="fixed">
+						Fixed
+					</button>
+					<button class="btn mode" data-mode="random">Random</button>
+					<button class="btn mode" data-mode="blink">Blink</button>
+				</div>
+
+				<div class="colors-grid" id="colors" aria-label="Choose color">
+					<!-- color buttons injected by JS -->
+				</div>
+
+				<p class="hint">
+					Tip: Turn on and choose a mode — use during concerts on your
+					phone.
+				</p>
+			</section>
+		</main>
+
+		<script src="script.js"></script>
+	</body>
+</html>
