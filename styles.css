@@ -110,8 +110,8 @@ body {
 .glow {
 	position: absolute;
 	/* base glow is large; we'll increase it further on small screens */
-	width: 140vmin;
-	height: 140vmin;
+	width: 240vmin;
+	height: 240vmin;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -135,8 +135,8 @@ body {
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
-		width: calc(var(--vh, 1vh) * 240);
-		height: calc(var(--vh, 1vh) * 240);
+		width: 280vmin;
+		height: 280vmin;
 		filter: blur(170px);
 		transition: filter 0.2s ease, opacity 0.18s ease;
 		z-index: 1; /* behind the head */
@@ -153,8 +153,8 @@ body {
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
-		width: calc(var(--vh, 1vh) * 300);
-		height: calc(var(--vh, 1vh) * 300);
+		width: 280vmin;
+		height: 280vmin;
 		filter: blur(48px);
 		z-index: 1;
 	}
