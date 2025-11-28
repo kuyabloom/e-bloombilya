@@ -124,7 +124,7 @@ body {
 	mix-blend-mode: hard-light;
 }
 .glow.on {
-	opacity: 1;
+	opacity: 50;
 }
 
 /* stronger, darker fullscreen-like glow on mobile — covers more area and is less blurry */
@@ -359,7 +359,7 @@ body {
 	opacity: 0;
 }
 .is-full .glow.on {
-	opacity: 1;
+	opacity: 50;
 }
 .is-full.fullscreen-expand .glow {
 	/* very large fullscreen glow; use --vh-based sizing for better mobile/iOS behavior */
