@@ -205,3 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		else if (isOn) startMode();
 	});
 });
+
+// Optional: try to register service worker from script too (redundant fallback)
+if ("serviceWorker" in navigator) {
+	navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
