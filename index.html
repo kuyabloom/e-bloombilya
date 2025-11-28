@@ -16,7 +16,18 @@
 					<div class="neck"></div>
 					<div class="head">
 						<div class="glow" id="glow"></div>
-						<div class="face"></div>
+						<div class="face">
+							<img
+								id="face-img"
+								src="images/bloombilya.png"
+								alt="BINI bloombilya lightstick" />
+							<!-- Infinity-shaped control overlayed on the head image -->
+							<button
+								id="infinity-btn"
+								class="infinity"
+								aria-label="Toggle power"
+								title="Toggle power"></button>
+						</div>
 					</div>
 				</div>
 			</section>
@@ -25,10 +36,11 @@
 				<div class="row">
 					<button id="btn-on" class="btn white">On</button>
 					<button id="btn-off" class="btn white">Off</button>
+					<button id="btn-full" class="btn white">Fullscreen</button>
 				</div>
 
 				<div class="modes" role="tablist" aria-label="Light modes">
-					<label class="mode-label">Mode:</label>
+					<span class="mode-label">Mode:</span>
 					<button class="btn mode active" data-mode="fixed">
 						Fixed
 					</button>
