@@ -78,7 +78,7 @@ body {
 		rgba(255, 255, 255, 0.01)
 	);
 	border: 1px solid rgba(255, 255, 255, 0.03);
-	/* box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) inset; */
+	z-index: 3;
 }
 .face {
 	width: 86%;
@@ -124,32 +124,42 @@ body {
 	mix-blend-mode: hard-light;
 }
 .glow.on {
-	opacity: 50;
+	opacity: 100;
 }
 
 /* stronger, darker fullscreen-like glow on mobile — covers more area and is less blurry */
 @media (max-width: 900px) {
+	/* make the glow cover the full viewport on mobile by using fixed positioning */
 	.glow {
-		width: 200vmin;
-		height: 200vmin;
-		filter: blur(56px);
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(var(--vh, 1vh) * 240);
+		height: calc(var(--vh, 1vh) * 240);
+		filter: blur(170px);
 		transition: filter 0.2s ease, opacity 0.18s ease;
+		z-index: 1; /* behind the head */
 	}
 	.glow.on {
-		opacity: 50;
-		/* make the glow feel denser on mobile */
-		mix-blend-mode: hard-light;
+		opacity: 100;
+		mix-blend-mode: screen;
 	}
 }
 
 @media (max-width: 480px) {
 	.glow {
-		width: 240vmin;
-		height: 240vmin;
+		position: fixed;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(var(--vh, 1vh) * 300);
+		height: calc(var(--vh, 1vh) * 300);
 		filter: blur(48px);
+		z-index: 1;
 	}
 	.glow.on {
-		opacity: 50;
+		opacity: 100;
 	}
 }
 
