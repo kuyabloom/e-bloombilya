@@ -136,7 +136,7 @@ body {
 		transition: filter 0.2s ease, opacity 0.18s ease;
 	}
 	.glow.on {
-		opacity: 25;
+		opacity: 50;
 		/* make the glow feel denser on mobile */
 		mix-blend-mode: hard-light;
 	}
@@ -149,7 +149,7 @@ body {
 		filter: blur(48px);
 	}
 	.glow.on {
-		opacity: 15;
+		opacity: 50;
 	}
 }
 
