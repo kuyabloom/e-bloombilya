@@ -142,6 +142,14 @@ body {
 	padding: 10px;
 	z-index: 10010;
 }
+/* center controls content so modes/colors align centrally */
+.controls {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 8px;
+}
 .controls .row {
 	display: flex;
 	gap: 10px;
@@ -387,6 +395,14 @@ body {
 		height: 62vmin;
 		filter: blur(48px);
 	}
+	/* center the controls container on smaller screens */
+	.controls {
+		left: 50%;
+		right: auto;
+		transform: translateX(-50%);
+		width: min(92%, 720px);
+		bottom: 12px;
+	}
 }
 
 @media (max-width: 640px) {
@@ -418,9 +434,10 @@ body {
 		filter: blur(44px);
 	}
 	.controls {
-		left: 8px;
-		right: 8px;
-		width: calc(100% - 16px);
+		left: 50%;
+		right: auto;
+		transform: translateX(-50%);
+		width: min(94%, 760px);
 		bottom: 10px;
 		max-height: 38vh;
 		padding: 8px;
