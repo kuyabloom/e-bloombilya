@@ -270,6 +270,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		else if (isOn) startMode();
 	});
 
+	// Fix mobile viewport unit issues (particularly iOS) by setting a --vh CSS variable
+	function setVhVar() {
+		const vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty("--vh", `${vh}px`);
+	}
+
+	// detect iOS to allow targeted CSS if needed
+	function detectIOS() {
+		const ua = navigator.userAgent || navigator.vendor || window.opera;
+		if (
+			/iPad|iPhone|iPod/.test(ua) ||
+			(navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+		) {
+			document.documentElement.classList.add("is-ios");
+		}
+	}
+
+	setVhVar();
+	detectIOS();
+	window.addEventListener("resize", setVhVar);
+
 	// (removed previous inline CSS fallback to avoid layout conflicts)
 });
 

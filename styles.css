@@ -254,7 +254,8 @@ body {
 	position: fixed;
 	inset: 0;
 	width: 100vw;
-	height: 100vh;
+	/* use --vh to avoid mobile/iOS address bar shrinkage issues */
+	height: calc(var(--vh, 1vh) * 100);
 	margin: 0;
 	display: flex;
 	align-items: center;
@@ -270,6 +271,12 @@ body {
 .is-full.fullscreen-expand .face img {
 	display: none;
 }
+.is-full.fullscreen-expand .head {
+	width: 100vw !important;
+	/* use --vh so fullscreen on iOS uses the true innerHeight */
+	height: calc(var(--vh, 1vh) * 100) !important;
+	border-radius: 0 !important;
+}
 .is-full .glow {
 	z-index: 9998;
 	opacity: 0;
@@ -278,12 +285,25 @@ body {
 	opacity: 1;
 }
 .is-full.fullscreen-expand .glow {
-	width: 220vmax !important;
-	height: 220vmax !important;
+	/* very large fullscreen glow; use --vh-based sizing for better mobile/iOS behavior */
+	width: calc(var(--vh, 1vh) * 220) !important;
+	height: calc(var(--vh, 1vh) * 220) !important;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
 	filter: blur(80px);
+}
+
+/* iOS-specific adjustments: reduce extreme vmax/vmin usage and rely on --vh */
+.is-ios .glow {
+	width: calc(var(--vh, 1vh) * 80) !important;
+	height: calc(var(--vh, 1vh) * 80) !important;
+	filter: blur(48px) !important;
+}
+.is-ios .is-full.fullscreen-expand .glow {
+	width: calc(var(--vh, 1vh) * 140) !important;
+	height: calc(var(--vh, 1vh) * 140) !important;
+	filter: blur(64px) !important;
 }
 .is-full .controls {
 	right: auto;
