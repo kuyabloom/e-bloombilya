@@ -83,6 +83,55 @@ body{
 .is-full .controls .colors-grid{grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:8px}
 .is-full .color-btn{display:inline-flex}
 
+/* Mobile / small-screen tweaks for fullscreen */
+@media (max-width: 640px) {
+	/* ensure no scrolling in fullscreen */
+	.is-full, .is-full body, .is-full html { overflow: hidden; }
+
+	/* center controls and keep them translucent/mostly transparent */
+	.is-full .controls{
+		left:50%;
+		transform:translateX(-50%);
+		bottom: calc(env(safe-area-inset-bottom,12px) + 10px);
+		width: calc(100% - 24px);
+		max-width: calc(100% - 24px);
+		padding: 10px 12px;
+		background: rgba(0,0,0,0.12); /* transparent look requested */
+		backdrop-filter: blur(6px);
+		box-shadow: none;
+	}
+
+	/* keep a small safe area so the lightstick doesn't get overlapped */
+	.is-full .lightstick { padding-bottom: calc(env(safe-area-inset-bottom,12px) + 88px); }
+
+	/* make swatches small but visible */
+	.is-full .controls .colors-grid { grid-template-columns: repeat(5, 1fr); gap:6px; }
+	.is-full .color-btn { min-height: 40px; border-radius: 8px; }
+
+	/* ensure head and image scale to fit without causing scroll */
+	.is-full.fullscreen-expand .head {
+		width: min(84vmin, 100vw) !important;
+		height: min(84vmin, 100vh) !important;
+		border-radius: 12px !important;
+	}
+	.is-full.fullscreen-expand .face {
+		width: 86%;
+		height: 86%;
+	}
+	.is-full.fullscreen-expand .face img {
+		width: 100vw !important;
+		height: 100vh !important;
+		object-fit: contain !important;
+	}
+
+}
+
+/* Transparent controls on fullscreen (desktop and mobile): keep legible but see-through */
+.is-full.fullscreen-expand .controls{ background: rgba(0,0,0,0.12); backdrop-filter: blur(6px); }
+
+/* Ensure body doesn't scroll when in fullscreen class */
+.is-full { overflow: hidden; }
+
 /* small helper when not using fullscreen API but still want large view */
 .bigview .container{max-width:none;padding:0}
 .bigview .title,.bigview .controls{display:none}
