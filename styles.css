@@ -431,8 +431,8 @@ body {
 		height: 88%;
 	}
 	.glow {
-		width: 62vmin;
-		height: 62vmin;
+		width: 262vmin;
+		height: 262vmin;
 		filter: blur(48px);
 	}
 	/* center the controls container on smaller screens */
@@ -474,8 +474,8 @@ body {
 		height: 200%;
 	}
 	.glow {
-		width: 72vmin;
-		height: 72vmin;
+		width: 272vmin;
+		height: 272vmin;
 		filter: blur(44px);
 	}
 	.controls {
