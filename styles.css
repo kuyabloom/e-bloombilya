@@ -1,6 +1,6 @@
 /* Cleaned stylesheet for E-Bloombilya
    - Restores layout consistency
-   - Default lightstick/head/face sizes increased (but not extreme)
+   - Default lightstick/head/face sizes increased substantially (desktop)
    - Preserves fullscreen behavior and color swatches
 */
 :root {
@@ -24,6 +24,7 @@ body {
 		Arial;
 	background: linear-gradient(180deg, var(--bg), #04101a);
 	color: #e6eef6;
+	-webkit-font-smoothing: antialiased;
 }
 
 .container {
@@ -44,36 +45,43 @@ body {
 	padding: 12px;
 }
 
-/* Default (desktop) sizes — noticeably larger than the original small version */
+/* Default (desktop) — larger, prominent artwork */
 .lightstick {
 	position: relative;
-	width: 520px; /* moderate large default */
-	min-height: 720px;
+	width: min(1400px, 96vw);
+	min-height: min(1000px, 94vh);
+	max-width: 1800px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 .head {
 	position: relative;
-	width: 420px;
-	height: 420px;
-	border-radius: 20px;
+	width: min(1200px, 90vw);
+	height: min(1200px, 90vw);
+	border-radius: 14px;
 	margin-top: -6px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(255, 255, 255, 0.03);
-	border: 1px solid rgba(255, 255, 255, 0.04);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.02),
+		rgba(255, 255, 255, 0.01)
+	);
+	border: 1px solid rgba(255, 255, 255, 0.03);
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) inset;
 }
 .face {
-	width: 360px;
-	height: 360px;
+	width: 88%;
+	height: 88%;
 	border-radius: 50%;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	overflow: hidden;
+	background: transparent;
 }
 .face img {
 	width: 100%;
@@ -84,10 +92,11 @@ body {
 	pointer-events: none;
 }
 
+/* Large glow for a stronger light effect */
 .glow {
 	position: absolute;
-	width: var(--glow-size);
-	height: var(--glow-size);
+	width: 100vmin;
+	height: 100vmin;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -95,7 +104,7 @@ body {
 	pointer-events: none;
 	opacity: 0;
 	transition: opacity 0.26s ease, box-shadow 0.26s ease, background 0.26s ease;
-	filter: blur(18px);
+	filter: blur(84px);
 	z-index: 2;
 	mix-blend-mode: screen;
 }
@@ -108,17 +117,14 @@ body {
 	position: fixed;
 	right: 16px;
 	bottom: 16px;
-	width: 360px;
+	width: 340px;
 	max-height: 48vh;
 	overflow: auto;
-	background: linear-gradient(
-		180deg,
-		rgba(0, 0, 0, 0.45),
-		rgba(0, 0, 0, 0.25)
-	);
-	backdrop-filter: blur(6px);
-	border-radius: 12px;
-	padding: 12px;
+	background: rgba(6, 10, 20, 0.6);
+	box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(8px);
+	border-radius: 14px;
+	padding: 14px;
 	z-index: 10010;
 }
 .controls .row {
@@ -128,17 +134,21 @@ body {
 	margin-bottom: 10px;
 }
 .btn {
-	padding: 10px 14px;
+	padding: 8px 12px;
 	border-radius: 8px;
 	border: 0;
 	cursor: pointer;
 	font-weight: 600;
+	transition: transform 0.12s ease;
+}
+.btn:hover {
+	transform: translateY(-3px);
 }
 .white {
 	background: #fff;
 	color: #111;
 	border: 2px solid rgba(0, 0, 0, 0.08);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
 }
 .modes {
 	display: flex;
@@ -155,9 +165,9 @@ body {
 	border-radius: 8px;
 }
 .mode.active {
-	background: rgba(255, 255, 255, 0.06);
+	background: rgba(255, 255, 255, 0.12);
 	color: #fff;
-	border-color: rgba(255, 255, 255, 0.08);
+	border-color: rgba(255, 255, 255, 0.12);
 }
 .mode-label {
 	color: var(--muted);
@@ -165,33 +175,41 @@ body {
 	margin-right: 6px;
 }
 
+/* Compact, attractive swatches */
 .colors-grid {
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	gap: 8px;
+	grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
+	gap: 10px;
 	padding: 6px;
+	align-items: center;
 }
 .color-btn {
-	width: 100%;
-	padding: 6px;
-	border-radius: 8px;
-	border: 2px solid rgba(255, 255, 255, 0.06);
-	box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.18);
+	width: 54px;
+	height: 44px;
+	padding: 4px;
+	border-radius: 10px;
+	border: 0;
+	background: transparent;
 	cursor: pointer;
-	min-height: 40px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .color-btn img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 	display: block;
-	border-radius: 6px;
+	border-radius: 8px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+.color-btn:hover {
+	transform: translateY(-4px) scale(1.04);
 }
 .color-btn.selected {
-	outline: 3px solid rgba(255, 255, 255, 0.12);
+	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55),
+		0 0 0 3px rgba(255, 255, 255, 0.06);
 }
 
 .infinity {
@@ -220,7 +238,7 @@ body {
 	font-size: 0.92rem;
 }
 
-/* Fullscreen helpers */
+/* Fullscreen behavior */
 .is-full {
 	background: #000 !important;
 }
@@ -252,8 +270,6 @@ body {
 .is-full.fullscreen-expand .face img {
 	display: none;
 }
-
-/* Make the glow large and visible in fullscreen */
 .is-full .glow {
 	z-index: 9998;
 	opacity: 0;
@@ -269,8 +285,6 @@ body {
 	transform: translate(-50%, -50%);
 	filter: blur(80px);
 }
-
-/* Controls repositioning in fullscreen */
 .is-full .controls {
 	right: auto;
 	left: 50%;
@@ -287,23 +301,24 @@ body {
 	);
 }
 
-/* Responsive: keep the bloombilya usable on small screens */
+/* Responsive caps */
 @media (max-width: 900px) {
 	.lightstick {
-		width: 420px;
-		min-height: 620px;
+		width: 520px;
+		min-height: 720px;
 	}
 	.head {
-		width: 360px;
-		height: 360px;
+		width: 420px;
+		height: 420px;
 	}
 	.face {
-		width: 306px;
-		height: 306px;
+		width: 360px;
+		height: 360px;
 	}
 	.glow {
 		width: 48vmin;
 		height: 48vmin;
+		filter: blur(36px);
 	}
 }
 
@@ -336,19 +351,9 @@ body {
 }
 
 /* Keep controls accessible on desktop */
-.controls {
-	position: fixed;
-	right: 12px;
-	bottom: 12px;
-	top: auto;
-	width: 360px;
-	max-height: 50vh;
-}
-.controls .row {
-	justify-content: center;
-}
+/* controls are defined earlier; duplicates removed */
 
-/* Bigview fallback (keeps existing feature) */
+/* Bigview fallback */
 .bigview .container {
 	max-width: none;
 	padding: 0;
