@@ -78,7 +78,7 @@ body {
 		rgba(255, 255, 255, 0.01)
 	);
 	border: 1px solid rgba(255, 255, 255, 0.03);
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) inset;
+	/* box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) inset; */
 }
 .face {
 	width: 86%;
@@ -101,7 +101,7 @@ body {
 	pointer-events: none;
 	/* make the artwork slightly translucent so colored glow shines through */
 	opacity: 0.86;
-	mix-blend-mode: screen;
+	mix-blend-mode: hard-light;
 	transition: opacity 0.18s ease, filter 0.18s ease;
 	filter: saturate(1.06) contrast(1.03);
 }
@@ -121,7 +121,7 @@ body {
 	transition: opacity 0.26s ease, box-shadow 0.26s ease, background 0.26s ease;
 	filter: blur(84px);
 	z-index: 2;
-	mix-blend-mode: screen;
+	mix-blend-mode: hard-light;
 }
 .glow.on {
 	opacity: 1;
@@ -136,9 +136,9 @@ body {
 		transition: filter 0.2s ease, opacity 0.18s ease;
 	}
 	.glow.on {
-		opacity: 15;
+		opacity: 25;
 		/* make the glow feel denser on mobile */
-		mix-blend-mode: screen;
+		mix-blend-mode: hard-light;
 	}
 }
 
