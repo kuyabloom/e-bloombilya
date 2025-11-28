@@ -374,29 +374,43 @@ body {
 
 @media (max-width: 640px) {
 	.container {
-		padding: 12px;
+		padding: 0;
 	}
 	.lightstick {
-		width: 220px;
-		min-height: 360px;
+		position: fixed;
+		inset: 0;
+		width: 100vw;
+		height: calc(var(--vh, 1vh) * 100);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
+	/* scale head to fit small screens without covering controls */
 	.head {
-		width: 180px;
-		height: 180px;
+		width: min(68vmin, 92vw);
+		height: min(68vmin, 92vw);
+		border-radius: 10px;
 	}
 	.face {
-		width: 150px;
-		height: 150px;
+		width: 88%;
+		height: 88%;
+	}
+	.glow {
+		width: calc(var(--vh, 1vh) * 52);
+		height: calc(var(--vh, 1vh) * 52);
+		filter: blur(44px);
 	}
 	.controls {
-		left: 12px;
-		right: 12px;
-		width: calc(100% - 24px);
-		bottom: 12px;
-		max-height: 40vh;
+		left: 8px;
+		right: 8px;
+		width: calc(100% - 16px);
+		bottom: 10px;
+		max-height: 38vh;
+		padding: 8px;
+		border-radius: 10px;
 	}
 	:root {
-		--glow-size: 180px;
+		--glow-size: 140px;
 	}
 }
 
