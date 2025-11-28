@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	const colorsGrid = document.getElementById("colors");
 	const btnOn = document.getElementById("btn-on");
 	const btnOff = document.getElementById("btn-off");
-	const btnFull = document.getElementById("btn-full");
 	const modeButtons = Array.from(document.querySelectorAll(".mode"));
 	const faceImg = document.getElementById("face-img");
 	const faceWrap = document.querySelector(".face");
@@ -190,60 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	btnOn && btnOn.addEventListener("click", turnOn);
 	btnOff && btnOff.addEventListener("click", turnOff);
 
-	// fullscreen / bigview
-	function enterBigView() {
-		const el = document.documentElement;
-		if (el.requestFullscreen) {
-			el.requestFullscreen().catch(() => {
-				document.documentElement.classList.add(
-					"bigview",
-					"is-full",
-					"fullscreen-expand"
-				);
-			});
-		} else {
-			document.documentElement.classList.add(
-				"bigview",
-				"is-full",
-				"fullscreen-expand"
-			);
-		}
-	}
+	// fullscreen functionality removed — layout uses fullscreen by default via CSS
 
-	function exitBigView() {
-		if (document.fullscreenElement)
-			document.exitFullscreen().catch(() => {});
-		document.documentElement.classList.remove(
-			"bigview",
-			"is-full",
-			"fullscreen-expand"
-		);
-	}
-
-	btnFull &&
-		btnFull.addEventListener("click", () => {
-			if (
-				!document.fullscreenElement &&
-				!document.documentElement.classList.contains("bigview")
-			)
-				enterBigView();
-			else exitBigView();
-		});
-
-	document.addEventListener("fullscreenchange", () => {
-		if (document.fullscreenElement)
-			document.documentElement.classList.add(
-				"is-full",
-				"fullscreen-expand"
-			);
-		else
-			document.documentElement.classList.remove(
-				"is-full",
-				"fullscreen-expand"
-			);
-	});
-
-	// infinity overlay
+	// infinity overlay (power toggle)
 	infinityBtn &&
 		infinityBtn.addEventListener("click", () =>
 			isOn ? turnOff() : turnOn()
