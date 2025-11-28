@@ -220,7 +220,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	// Fix mobile viewport unit issues (particularly iOS) by setting a --vh CSS variable
 	function setVhVar() {
-		const vh = window.innerHeight * 0.01;
+		// prefer visualViewport when available for Chrome mobile accuracy
+		const height =
+			globalThis.visualViewport && globalThis.visualViewport.height
+				? globalThis.visualViewport.height
+				: window.innerHeight;
+		const vh = height * 0.01;
 		document.documentElement.style.setProperty("--vh", `${vh}px`);
 	}
 
@@ -241,6 +246,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	window.addEventListener("resize", setVhVar);
 	window.addEventListener("orientationchange", setVhVar);
 	window.addEventListener("pageshow", setVhVar);
+	// visualViewport fires more reliably on Chrome when the address bar toggles
+	if (
+		globalThis.visualViewport &&
+		globalThis.visualViewport.addEventListener
+	) {
+		globalThis.visualViewport.addEventListener("resize", setVhVar);
+	}
 	// some browsers update innerHeight after touch interactions
 	window.addEventListener("touchend", () => setTimeout(setVhVar, 50));
 
