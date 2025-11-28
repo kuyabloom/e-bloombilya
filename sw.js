@@ -1,4 +1,5 @@
-const CACHE_NAME = "ebloombilya-v1";
+// bump this to force clients to refresh cached assets when we deploy
+const CACHE_NAME = "ebloombilya-v2";
 const ASSETS = [
 	"/",
 	"/index.html",
