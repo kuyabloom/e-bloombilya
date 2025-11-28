@@ -237,7 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	setVhVar();
 	detectIOS();
+	// recalc --vh on common mobile events that change the viewport (address bar, rotation)
 	window.addEventListener("resize", setVhVar);
+	window.addEventListener("orientationchange", setVhVar);
+	window.addEventListener("pageshow", setVhVar);
+	// some browsers update innerHeight after touch interactions
+	window.addEventListener("touchend", () => setTimeout(setVhVar, 50));
 
 	// (removed previous inline CSS fallback to avoid layout conflicts)
 });

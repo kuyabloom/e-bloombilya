@@ -64,9 +64,9 @@ body {
 }
 .head {
 	position: relative;
-	/* keep the head large but not full-covering — scale with viewport */
-	width: min(900px, 82vw);
-	height: min(900px, 82vw);
+	/* keep the head large but not full-covering — ensure a reasonable minimum using clamp */
+	width: clamp(300px, 82vmin, 900px);
+	height: clamp(300px, 82vmin, 900px);
 	border-radius: 12px;
 	margin-top: 0;
 	display: flex;
@@ -361,8 +361,8 @@ body {
 	}
 	/* use vmin so the head scales to whichever dimension is smaller (portrait/landscape) */
 	.head {
-		width: min(86vmin, 92vw);
-		height: min(86vmin, 92vw);
+		width: clamp(280px, 86vmin, 92vw);
+		height: clamp(280px, 86vmin, 92vw);
 		border-radius: 12px;
 	}
 	.face {
@@ -391,8 +391,8 @@ body {
 	}
 	/* make head large but bounded by viewport so it always fills available space */
 	.head {
-		width: min(88vmin, 96vw);
-		height: min(88vmin, 96vw);
+		width: clamp(240px, 88vmin, 96vw);
+		height: clamp(240px, 88vmin, 96vw);
 		border-radius: 10px;
 	}
 	.face {
