@@ -109,8 +109,9 @@ body {
 /* Large glow for a stronger light effect */
 .glow {
 	position: absolute;
-	width: 100vmin;
-	height: 100vmin;
+	/* base glow is large; we'll increase it further on small screens */
+	width: 140vmin;
+	height: 140vmin;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
@@ -124,6 +125,32 @@ body {
 }
 .glow.on {
 	opacity: 1;
+}
+
+/* stronger, darker fullscreen-like glow on mobile — covers more area and is less blurry */
+@media (max-width: 900px) {
+	.glow {
+		width: 200vmin;
+		height: 200vmin;
+		filter: blur(56px);
+		transition: filter 0.2s ease, opacity 0.18s ease;
+	}
+	.glow.on {
+		opacity: 1;
+		/* make the glow feel denser on mobile */
+		mix-blend-mode: screen;
+	}
+}
+
+@media (max-width: 480px) {
+	.glow {
+		width: 240vmin;
+		height: 240vmin;
+		filter: blur(48px);
+	}
+	.glow.on {
+		opacity: 1;
+	}
 }
 
 /* Controls */
@@ -209,10 +236,13 @@ body {
 /* Compact, attractive swatches */
 .colors-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+	/*grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));*/
+	grid-template-columns: repeat(5, minmax(0, 1fr));
 	gap: 8px;
 	padding: 6px;
 	align-items: center;
+	max-height: 34vh;
+	overflow-y: auto;
 }
 .color-btn {
 	width: 44px;
@@ -249,8 +279,8 @@ body {
 	left: 49%;
 	top: 53%;
 	transform: translate(-50%, -50%);
-	width: 5%;
-	height: 5%;
+	width: 30px;
+	height: 30px;
 	border-radius: 50%;
 	border: 0;
 	background: radial-gradient(circle at 30% 28%, #fff6c6, #ffd24d);
@@ -403,6 +433,11 @@ body {
 		width: min(92%, 720px);
 		bottom: 12px;
 	}
+	/* make color grid 4 columns on medium/small screens */
+	.colors-grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 8px;
+	}
 }
 
 @media (max-width: 640px) {
@@ -425,8 +460,8 @@ body {
 		border-radius: 10px;
 	}
 	.face {
-		width: 90%;
-		height: 90%;
+		width: 100%;
+		height: 200%;
 	}
 	.glow {
 		width: 72vmin;
@@ -442,6 +477,11 @@ body {
 		max-height: 38vh;
 		padding: 8px;
 		border-radius: 10px;
+	}
+	/* 3 columns on narrow screens so swatches don't get too small */
+	.colors-grid {
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		gap: 6px;
 	}
 	:root {
 		--glow-size: 140px;
