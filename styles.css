@@ -20,6 +20,8 @@ body {
 }
 body {
 	margin: 0;
+	/* avoid page scrollbars so the app truly feels fullscreen on mobile */
+	overflow: hidden;
 	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
 		Arial;
 	background: linear-gradient(180deg, var(--bg), #04101a);
@@ -92,15 +94,16 @@ body {
 .face img {
 	width: 100%;
 	height: 100%;
-	object-fit: contain;
+	/* fill the circular face so artwork appears large on any viewport */
+	object-fit: cover;
 	display: block;
 	z-index: 3;
 	pointer-events: none;
 	/* make the artwork slightly translucent so colored glow shines through */
-	opacity: 0.88;
+	opacity: 0.92;
 	mix-blend-mode: screen;
 	transition: opacity 0.18s ease, filter 0.18s ease;
-	filter: saturate(1.05) contrast(1.02);
+	filter: saturate(1.06) contrast(1.03);
 }
 
 /* Large glow for a stronger light effect */
@@ -356,18 +359,19 @@ body {
 		align-items: center;
 		justify-content: center;
 	}
+	/* use vmin so the head scales to whichever dimension is smaller (portrait/landscape) */
 	.head {
-		width: min(420px, 78vw);
-		height: min(420px, 78vw);
+		width: min(86vmin, 92vw);
+		height: min(86vmin, 92vw);
 		border-radius: 12px;
 	}
 	.face {
-		width: 84%;
-		height: 84%;
+		width: 88%;
+		height: 88%;
 	}
 	.glow {
-		width: 56vmin;
-		height: 56vmin;
+		width: 62vmin;
+		height: 62vmin;
 		filter: blur(48px);
 	}
 }
@@ -385,19 +389,19 @@ body {
 		align-items: center;
 		justify-content: center;
 	}
-	/* scale head to fit small screens without covering controls */
+	/* make head large but bounded by viewport so it always fills available space */
 	.head {
-		width: min(68vmin, 92vw);
-		height: min(68vmin, 92vw);
+		width: min(88vmin, 96vw);
+		height: min(88vmin, 96vw);
 		border-radius: 10px;
 	}
 	.face {
-		width: 88%;
-		height: 88%;
+		width: 90%;
+		height: 90%;
 	}
 	.glow {
-		width: calc(var(--vh, 1vh) * 52);
-		height: calc(var(--vh, 1vh) * 52);
+		width: 72vmin;
+		height: 72vmin;
 		filter: blur(44px);
 	}
 	.controls {
